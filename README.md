@@ -3,6 +3,10 @@
 
 ![Screenshot 2024-09-23 161338](https://github.com/user-attachments/assets/7ac5a5e0-c3ec-4154-8e59-84eae60bf52a)
 
+👀 Use Me(LIVE APP)
+[Groq Whisper AI](https://groq-whisper-ai.streamlit.app) 🎧🗣️
+
+
 This Streamlit-based app allows users to transcribe audio files or YouTube videos using the Groq Whisper API. It provides two main functionalities:
 1. 📥 Upload an MP3 file for transcription.
 2. 📺 Input a YouTube URL, download the audio, and transcribe it.

@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st 
 import os
 import base64
 import yt_dlp
@@ -61,7 +61,6 @@ st.set_page_config(layout="wide", page_title="🎤 Groq Whisper Fast Transcripti
 st.markdown("""
     <style>
     .main {
-        
         padding: 10px;
     }
     .block-container {
@@ -81,19 +80,21 @@ tab1, tab2 = st.tabs(["📂 Upload Audio", "🎥 YouTube to Audio"])
 
 # Tab 1: Upload Audio and Transcription
 with tab1:
-    st.header("🎧 Upload MP3 for Transcription")
-    st.write("Upload your MP3 file and get a transcription in a few seconds.")
+    st.header("🎧 Upload Audio for Transcription")
+    st.write("Upload your audio file (MP3, WAV, FLAC, M4A, OGG) and get a transcription in a few seconds.")
 
-    uploaded_file = st.file_uploader("🔊 Upload an MP3 file", type=["mp3"])
+    # Updated file uploader to accept multiple audio formats
+    uploaded_file = st.file_uploader("🔊 Upload an audio file", type=["mp3", "wav", "flac", "m4a", "ogg"])
     
     if uploaded_file is not None:
         with st.spinner("⚙️ Processing your audio..."):
-            # Save the uploaded file to disk
-            with open("uploaded_file.mp3", "wb") as f:
+            # Save the uploaded file to disk with the original extension
+            uploaded_file_name = uploaded_file.name
+            with open(uploaded_file_name, "wb") as f:
                 f.write(uploaded_file.getbuffer())
 
             # Re-encode the uploaded audio to OGG (Opus) format to reduce file size
-            reencode_audio_to_ogg("uploaded_file.mp3", "encoded_audio.ogg")
+            reencode_audio_to_ogg(uploaded_file_name, "encoded_audio.ogg")
 
             # Convert the re-encoded OGG file to base64 for embedding in HTML
             base64_audio = audio_to_base64("encoded_audio.ogg")
